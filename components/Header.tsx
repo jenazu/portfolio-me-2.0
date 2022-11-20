@@ -19,12 +19,12 @@ export default function Header({}: Props) {
           bgColor="transparent"
         />
         <SocialIcon
-          url="https://www.facebook.com"
+          url="https://www.facebook.com/pham.nghia.1690/"
           fgColor="gray"
           bgColor="transparent"
         />
         <SocialIcon
-          url="https://www.github.com"
+          url="https://github.com/jenazu"
           fgColor="gray"
           bgColor="transparent"
         />
