@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
@@ -8,7 +9,7 @@ import Hero from "../components/Hero";
 import Projects from "../components/Projects";
 import Skills from "../components/Skills";
 import WorkExperience from "../components/WorkExperience";
-import { Experience, PageInfo, Project, Skill, Social } from "../typings";
+import { Experience, PageInfo, Project, SkillType, Social } from "../typings";
 import { fetchExperiences } from "../utils/fetchExperiences";
 import { fetchPageInfo } from "../utils/fetchPageInfo";
 import { fetchProjects } from "../utils/fetchProjects";
@@ -18,7 +19,7 @@ import { fetchSocials } from "../utils/fetchSocials";
 type Props = {
   pageInfo: PageInfo;
   experiences: Experience[];
-  skills: Skill[];
+  skills: SkillType[];
   projects: Project[];
   socials: Social[];
 };
@@ -41,23 +42,23 @@ const Home = ({ pageInfo, skills, experiences, projects, socials }: Props) => {
       </section>
       {/* About */}
       <section id="about" className="snap-center">
-        <About />
+        <About pageInfo={pageInfo}/>
       </section>
       {/* Experience */}
       <section id="experience" className="snap-center">
-        <WorkExperience />
+        <WorkExperience experiences={experiences}/>
       </section>
       {/* Skills */}
       <section id="skills" className="snap-start">
-        <Skills />
+        <Skills skills={skills}/>
       </section>
       {/* Projects */}
       <section id="projects" className="snap-start">
-        <Projects />
+        <Projects projects={projects}/>
       </section>
       {/* Contact Me */}
       <section id="contact" className="snap-start">
-        <Contact />
+        <Contact pageInfo={pageInfo}/>
       </section>
       <Link href="#hero">
         <footer className="sticky bottom-5 w-full cursor-pointer">
@@ -78,7 +79,7 @@ export default Home;
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const socials: Social[] = await fetchSocials();
-  const skills: Skill[] = await fetchSkills();
+  const skills: SkillType[] = await fetchSkills();
   const experiences: Experience[] = await fetchExperiences();
   const projects: Project[] = await fetchProjects();
   const pageInfo: PageInfo = await fetchPageInfo();

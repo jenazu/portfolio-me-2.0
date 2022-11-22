@@ -1,12 +1,14 @@
+
 import React from "react";
 import { motion } from "framer-motion";
+import { SkillType } from "../typings";
 import Skill from "./Skill";
 
-const skills = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-type Props = {};
 
-export default function Skills({}: Props) {
+type Props = {skills: SkillType[]};
+
+export default function Skills({skills}: Props) {
   return (
     <motion.div
       className="flex relative felx-col text-center md:text-left xl:flex-row max-w-[2000px]
@@ -16,13 +18,16 @@ export default function Skills({}: Props) {
         skills
       </h3>
       <h3 className="absolute top-36 uppercase tracking-[3px] text-gray-500 text-sm ">
-        Hover over a skill for currency profieciency
+        Hover over a skill for current profieciency
       </h3>
       <div className="grid grid-cols-4 gap-5 ">
-        {skills.map((i) => (
-          <Skill />
+        {skills.slice(0, skills.length / 2).map((skill) => (
+          <Skill key={skill._id}  skill={skill}/>
         ))}
-        <Skill />
+        {skills.slice(skills.length / 2, skills.length).map((skill) => (
+          <Skill key={skill._id}  skill={skill} directionLeft/>
+        ))}
+       
       </div>
     </motion.div>
   );

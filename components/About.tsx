@@ -1,9 +1,11 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { PageInfo } from "../typings";
+import { urlFor } from "../sanity";
 
-type Props = {};
+type Props = {pageInfo: PageInfo};
 
-export default function About({}: Props) {
+export default function About({pageInfo}: Props) {
   return (
     <motion.div
     initial={{
@@ -20,7 +22,7 @@ export default function About({}: Props) {
         About
       </h3>
       <motion.img
-        src="https://scontent.fhan4-3.fna.fbcdn.net/v/t39.30808-6/273042313_3091780434375216_6579453515308778796_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=nCELGxPpTG0AX-TGmIo&_nc_ht=scontent.fhan4-3.fna&oh=00_AfDimqUuk-zXnwzNBFEeK9G4EgnyU1jyYL04vaZLxAYPTA&oe=637E7679"
+        src={urlFor(pageInfo.profilePic).url()}
         initial={{
           x: -200,
           opacity: 0,
@@ -38,14 +40,7 @@ export default function About({}: Props) {
           background
         </h4>
         <p className="text-sm">
-          Hello, my name is Nghia. I am from Ha Noi. I completed my
-          Bachelor of Engineering degree in 2018 from Hanoi University of
-          Industry. I got hired by a renowned IT company for one year now. I
-          have learned the ins and outs of IT operations in my journey from a
-          fresher to junior. My qualifications and work experience make me a
-          suitable candidate for the profile. I am looking to join your
-          organization to explore new dimensions and for the further development
-          of my skills.
+          {pageInfo.backgroundInfomation}
         </p>
       </div>
     </motion.div>

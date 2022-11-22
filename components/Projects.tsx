@@ -1,10 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Project } from "../typings";
+import { urlFor } from "../sanity";
 
-type Props = {};
+type Props = {projects: Project[]};
 
-export default function Projects({}: Props) {
-  const projects = [1, 2, 3, 4, 5];
+export default function Projects({projects}: Props) {
+  
   return (
     <div
       className="h-screen relative flex overflow-hidden flex-col text-left md:flex-row
@@ -17,8 +19,9 @@ export default function Projects({}: Props) {
         className="relactive w-full flex overflow-x-scroll overflow-y-hidden snap-x
       snap-mandatory z-20 scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[#f7ab0a]/80"
       >
-        {projects.map((p, i) => (
+        {projects?.map((p, i) => (
           <div
+          key={p._id}
             className="flex flex-col w-screen flex-shrink-0 snap-center space-y-5
           items-center justify-center p-20 md:p-44 h-screen"
           >
@@ -27,19 +30,27 @@ export default function Projects({}: Props) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1.2 }}
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4faVt2tCZlWXRnk7OlYWjHMfiFFle4eCq6NpGXLFlIbrpsfwgqGCflWFFxZf4GztAtUM&usqp=CAU"
+              src={urlFor(p?.image).url()}
             />
             <div className="space-y-10 px-0 md:px-10 max-w-6xl">
               <h4 className="text-4xl font-semibold text-center">
                 <span className="underline decoration-[#f7ab0a]/50">
                   Case Study {i + 1} of {projects.length}:
                 </span>
-                UPS clone
+                {p.title}
               </h4>
+              <div className="flex items-center space-x-2 justify-center">
+                {p?.technologies.map((t) => (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img 
+                  className="h-10 w-10"
+                  key={t._id}
+                  src={urlFor(t.image).url()}
+                  alt=""/>
+                ))}
+              </div>
               <p className="text-lg text-center md:text-left">
-                The imported SVG React Component accepts a title prop along with
-                other props that a svg element accepts. Use this prop to add an
-                accessible title to your svg component.
+                {p.summary}
               </p>
             </div>
           </div>

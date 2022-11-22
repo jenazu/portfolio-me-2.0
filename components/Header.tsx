@@ -3,9 +3,15 @@ import { SocialIcon } from "react-social-icons";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Social } from "../typings";
+
 type Props = { socials: Social[] };
 
 export default function Header({ socials }: Props) {
+
+  const openInNewTab = (url: string) => {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <header className="sticky top-0 p-5 flex items-start justify-between max-w-7xl mx-auto z-20 xl:items-end">
       <motion.div
@@ -15,8 +21,7 @@ export default function Header({ socials }: Props) {
         className="flex flex-row items-center"
       >
         {/* Social Icons */}
-        {!!socials &&
-          socials.map((social) => (
+        {socials.map((social) => (
             <SocialIcon
               key={social._id}
               url={social.url}
@@ -41,6 +46,11 @@ export default function Header({ socials }: Props) {
           <p className="uppercase hidden md:inline-flex text-sm text-gray-400">
             Get In Touch
           </p>
+          <button onClick={() => openInNewTab('https://drive.google.com/drive/folders/1zVfNbeOdlwwYhEHM-OX_qQ7KWhwpjjNk?usp=sharing')}>
+
+          <p className="decoration-[#f7ab0a]/50 underline ml-5 uppercase  md:inline-flex text-sm text-gray-400">Download CV</p>
+          </button>
+          
         </motion.div>
       </Link>
     </header>

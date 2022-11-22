@@ -16,13 +16,13 @@ interface Image {
 export interface PageInfo extends SanityBody {
   _type: "PageInfo";
   address: string;
-  backgroundInformation: string;
+  backgroundInfomation: string;
   email: string;
   role: string;
   heroImage: Image;
   name: string;
   phoneNumber: string;
-  profilepic: Image;
+  profilePic: Image;
 }
 
 export interface Technology extends SanityBody {
@@ -32,7 +32,7 @@ export interface Technology extends SanityBody {
   title: string;
 }
 
-export interface Skill extends SanityBody {
+export interface SkillType extends SanityBody {
   _type: "skill";
   image: Image;
   progress: number;
