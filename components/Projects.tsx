@@ -16,14 +16,14 @@ export default function Projects({projects}: Props) {
         projects
       </h3>
       <div
-        className="relactive w-full flex overflow-x-scroll overflow-y-hidden snap-x
+        className="relactive mt-24 w-full flex overflow-x-scroll overflow-y-hidden snap-x
       snap-mandatory z-20 scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[#f7ab0a]/80"
       >
         {projects?.map((p, i) => (
           <div
           key={p._id}
-            className="flex flex-col w-screen flex-shrink-0 snap-center space-y-5
-          items-center justify-center p-20 md:p-44 h-screen"
+            className="flex flex-col w-screen flex-shrink-0 snap-center space-y-5 
+          items-center justify-center p-20 md:p-44 h-screen "
           >
             <motion.img
               initial={{ y: -300, opacity: 0 }}
@@ -31,6 +31,7 @@ export default function Projects({projects}: Props) {
               viewport={{ once: true }}
               transition={{ duration: 1.2 }}
               src={urlFor(p?.image).url()}
+              className="h-60 "
             />
             <div className="space-y-10 px-0 md:px-10 max-w-6xl">
               <h4 className="text-4xl font-semibold text-center">
